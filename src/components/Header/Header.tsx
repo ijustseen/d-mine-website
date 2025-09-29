@@ -12,7 +12,7 @@ const Header = () => {
   const navItems = [
     { label: "Главная", path: "/" },
     { label: "О сервере", path: "/about" },
-    { label: "Проходка", path: "/entrance" },
+    { label: "Проходка", path: "/pass" },
     { label: "Правила", path: "/rules" },
     { label: "Вики", path: "/wiki" },
   ];
@@ -22,7 +22,9 @@ const Header = () => {
       <div className={`container ${styles.content}`}>
         <div className={styles.burger}></div>
         <div className={styles.logo}>
-          <span>D.Mine</span>
+          <Link href="/">
+            <span>D.Mine</span>
+          </Link>
         </div>
         <div className={styles.navigation}>
           <ul className={styles.navBar}>
