@@ -1,4 +1,4 @@
-import { FaTelegram } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 import { MdSupportAgent } from "react-icons/md";
 import styles from "./SocialLinks.module.scss";
 
@@ -9,7 +9,7 @@ interface SocialLinksProps {
 const SocialLinks = ({ className }: SocialLinksProps) => {
   const socialLinks = [
     {
-      icon: <FaTelegram />,
+      icon: <FaTelegramPlane />,
       href: "https://t.me/your_channel", // Замени на реальную ссылку
       title: "Telegram",
       ariaLabel: "Перейти в Telegram канал",

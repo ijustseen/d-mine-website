@@ -27,7 +27,7 @@
 
 .logo {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .navigation {
@@ -39,21 +39,25 @@
 .navBar {
   display: flex;
   list-style: none;
-  gap: 1.5rem;
+  gap: 0.6rem;
 }
 
 .navElement {
   cursor: pointer;
-  transition: color 0.2s ease;
+  // transition: color 0.2s ease;
   position: relative;
+  padding: 12px 20px;
+  border-radius: 20px;
 
   &:hover {
     color: var(--primary);
+    background-color: var(--gray-alpha-100);
   }
 
   &.active {
     color: var(--primary);
-    font-weight: 600;
+
+    border-radius: 20px 20px 0 0;
 
     &::after {
       content: "";
@@ -72,6 +76,7 @@
   display: none;
   width: 24px;
   height: 24px;
+  background-color: red;
   cursor: pointer;
 }
 

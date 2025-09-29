@@ -20,6 +20,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.content}`}>
+        <div className={styles.burger}></div>
         <div className={styles.logo}>
           <span>D.Mine</span>
         </div>
@@ -40,7 +41,6 @@ const Header = () => {
           <SocialLinks />
         </div>
         <ThemeToggle />
-        <div className={styles.burger}></div>
       </div>
     </header>
   );
