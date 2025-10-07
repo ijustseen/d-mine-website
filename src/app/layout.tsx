@@ -27,6 +27,36 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  // Получаем сохраненную тему из localStorage
+                  var savedTheme = localStorage.getItem('theme');
+                  var theme = 'light';
+                  
+                  if (savedTheme === 'dark' || savedTheme === 'light') {
+                    theme = savedTheme;
+                  } else {
+                    // Если нет сохраненной темы, проверяем системную
+                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                      theme = 'dark';
+                    }
+                  }
+                  
+                  // Применяем тему сразу
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch (e) {
+                  // Fallback на светлую тему при ошибке
+                  document.documentElement.setAttribute('data-theme', 'light');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider>
           <Header />
