@@ -7,9 +7,15 @@ interface RulesClientProps {
   rulesContent: string;
 }
 
+interface Section {
+  id: string;
+  title: string;
+  number: string;
+}
+
 // Простая функция для парсинга разделов из markdown
-function parseRulesContent(content: string) {
-  const sections = [];
+function parseRulesContent(content: string): Section[] {
+  const sections: Section[] = [];
   const lines = content.split("\n");
 
   for (let i = 0; i < lines.length; i++) {
@@ -76,7 +82,7 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
     const lines = rulesContent.split("\n");
     const renderedSections = [];
     let currentSectionLines: string[] = [];
-    let currentSectionInfo: any = null;
+    let currentSectionInfo: Section | null = null;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
@@ -222,7 +228,7 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
       <div className={styles.container}>
         <main className={styles.main}>
           <header className={styles.header}>
-            <h1 className={styles.title}>Правила</h1>
+            <h1 className={styles.title}>Правила D.mine</h1>
           </header>
 
           <div className={styles.content}>

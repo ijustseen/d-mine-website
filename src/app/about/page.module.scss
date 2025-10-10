@@ -1,13 +1,13 @@
 .page {
   min-height: 100vh;
-  padding-top: 100px;
+  padding-top: 0; // Убираем отступ, чтобы контент мог проходить под header
   font-family: var(--font-geist-sans);
 }
 
 .main {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 100px 1rem 2rem; // Добавляем отступ сверху только к main контенту
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -374,7 +374,7 @@
 // Адаптивность
 @media (max-width: 768px) {
   .main {
-    padding: 1rem;
+    padding: 80px 1rem 2rem; // Уменьшаем отступ сверху для мобильных
     gap: 3rem;
   }
 

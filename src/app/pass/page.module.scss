@@ -3,7 +3,7 @@
   align-items: flex-start;
   justify-content: center;
   min-height: 100vh;
-  padding-top: 100px; // Увеличенный отступ для более высокого хедера
+  padding-top: 0; // Убираем отступ, чтобы контент мог проходить под header
   font-family: var(--font-geist-sans);
 }
 
@@ -15,6 +15,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  margin-top: 100px; // Добавляем отступ только к main контенту
 }
 
 .tabs {
