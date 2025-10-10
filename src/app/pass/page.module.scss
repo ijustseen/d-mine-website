@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  margin-top: 100px; // Добавляем отступ только к main контенту
+  margin-top: 120px; // Увеличиваем отступ сверху для шапки
 }
 
 .tabs {
@@ -141,4 +141,27 @@
 
 .ctaSecondary:hover {
   background: var(--button-primary-hover);
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+  .main {
+    margin-top: 100px; // Отступ для мобильных устройств
+    padding: 0 1rem;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cta,
+  .ctaSecondary {
+    width: 100%;
+    justify-content: center;
+  }
 }

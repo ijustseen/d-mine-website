@@ -3,7 +3,9 @@
   --background: #ffffff;
   --foreground: #171717;
   --gray-rgb: 0, 0, 0;
+  --gray-alpha-300: rgba(var(--gray-rgb), 0.12);
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-150: rgba(var(--gray-rgb), 0.05);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.03);
   --primary: #4a90e2;
   --link-color: var(--primary);
@@ -22,7 +24,9 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --gray-rgb: 255, 255, 255;
+    --gray-alpha-300: rgba(var(--gray-rgb), 0.2);
     --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-150: rgba(var(--gray-rgb), 0.1);
     --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
     --primary: #5ba3f5;
     --button-primary-hover: #7bb8f7;

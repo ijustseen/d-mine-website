@@ -7,7 +7,7 @@
 .main {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 100px 1rem 2rem; // Добавляем отступ сверху только к main контенту
+  padding: 120px 1rem 2rem; // Увеличиваем отступ сверху для шапки
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -374,7 +374,7 @@
 // Адаптивность
 @media (max-width: 768px) {
   .main {
-    padding: 80px 1rem 2rem; // Уменьшаем отступ сверху для мобильных
+    padding: 100px 1rem 2rem; // Увеличиваем отступ сверху для мобильных
     gap: 3rem;
   }
 

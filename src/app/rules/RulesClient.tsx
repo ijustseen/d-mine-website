@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 import styles from "./page.module.scss";
 
 interface RulesClientProps {
@@ -39,8 +40,16 @@ function parseRulesContent(content: string): Section[] {
 export default function RulesClient({ rulesContent }: RulesClientProps) {
   const [activeSection, setActiveSection] = useState("section-1");
   const [isClient, setIsClient] = useState(false);
+  const [visibleLists, setVisibleLists] = useState<Record<string, boolean>>({});
 
   const sections = parseRulesContent(rulesContent);
+
+  const toggleListVisibility = (listId: string) => {
+    setVisibleLists((prev) => ({
+      ...prev,
+      [listId]: !prev[listId],
+    }));
+  };
 
   useEffect(() => {
     setIsClient(true);
@@ -147,6 +156,7 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
     let currentList: string[] = [];
     let listType: "ordered" | "unordered" | null = null;
     let currentSubtitle = "";
+    let currentContext = "";
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
@@ -154,10 +164,16 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
       if (!line) continue;
 
       // Подзаголовки (заканчиваются на :)
-      if (line.endsWith(":") && !line.match(/^\d+\.\d+/)) {
+      if (
+        line.endsWith(":") &&
+        !line.match(/^\d+\.\d+/) &&
+        !line.startsWith("-")
+      ) {
         // Завершаем текущий список если есть
         if (currentList.length > 0) {
-          content.push(renderList(currentList, listType, content.length));
+          content.push(
+            renderList(currentList, listType, content.length, currentContext)
+          );
           currentList = [];
           listType = null;
         }
@@ -174,6 +190,15 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
         continue;
       }
 
+      // Маркированные списки (начинаются с дефиса)
+      const bulletMatch = line.match(/^-\s+(.+)$/);
+      if (bulletMatch) {
+        const [, text] = bulletMatch;
+        currentList.push(text);
+        listType = "unordered";
+        continue;
+      }
+
       // Пункты правил (например: "1.1. Пропаганда...")
       const itemMatch = line.match(/^(\d+\.\d+)\.\s+(.+)$/);
       if (itemMatch) {
@@ -184,13 +209,18 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
       }
 
       // Обычный текст
-      if (line && !line.match(/^\d+\./)) {
+      if (line && !line.match(/^\d+\./) && !line.startsWith("-")) {
         // Завершаем текущий список если есть
         if (currentList.length > 0) {
-          content.push(renderList(currentList, listType, content.length));
+          content.push(
+            renderList(currentList, listType, content.length, currentContext)
+          );
           currentList = [];
           listType = null;
         }
+
+        // Сохраняем контекст для следующего списка
+        currentContext = line;
 
         content.push(
           <p key={`text-${content.length}`} className={styles.sectionSubtitle}>
@@ -202,7 +232,9 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
 
     // Завершаем последний список если есть
     if (currentList.length > 0) {
-      content.push(renderList(currentList, listType, content.length));
+      content.push(
+        renderList(currentList, listType, content.length, currentContext)
+      );
     }
 
     return content;
@@ -211,8 +243,49 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
   const renderList = (
     items: string[],
     type: "ordered" | "unordered" | null,
-    key: number
+    key: number,
+    listTitle?: string
   ) => {
+    if (type === "unordered") {
+      const listId = `list-${key}`;
+      const isVisible = visibleLists[listId] || false;
+
+      // Определяем название для кнопки
+      const getListButtonText = () => {
+        if (listTitle && listTitle.includes("запрещенных модов")) {
+          return isVisible
+            ? "Скрыть запрещенные моды"
+            : "Показать запрещенные моды";
+        }
+        return isVisible ? "Скрыть список" : "Показать список";
+      };
+
+      // Для маркированных списков используем кнопку переключения
+      return (
+        <div key={listId} className={styles.listContainer}>
+          <button
+            className={styles.listToggleButton}
+            onClick={() => toggleListVisibility(listId)}
+            type="button"
+          >
+            {isVisible ? <IoEyeOff /> : <IoEye />}
+            <span>{getListButtonText()}</span>
+          </button>
+
+          {isVisible && (
+            <ul className={styles.checkList}>
+              {items.map((item, index) => (
+                <li key={index} className={styles.checkListItem}>
+                  <span className={styles.checkText}>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
+    }
+
+    // Для нумерованных списков используем обычный стиль
     const ListComponent = type === "ordered" ? "ol" : "ul";
     return (
       <ListComponent key={`list-${key}`} className={styles.rulesList}>
