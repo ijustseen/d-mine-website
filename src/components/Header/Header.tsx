@@ -6,12 +6,10 @@ import styles from "./Header.module.scss";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
-import { useTheme } from "@/contexts/ThemeContext";
 
 const Header = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme } = useTheme();
 
   const navItems = [
     { label: "Главная", path: "/" },
@@ -29,21 +27,8 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
-  // Inline стили только для блюра
-  const headerBlurStyle = {
-    backdropFilter: "blur(8px)",
-    WebkitBackdropFilter: "blur(8px)",
-    background:
-      theme === "dark" ? "rgba(10, 10, 10, 0.7)" : "rgba(255, 255, 255, 0.7)",
-  };
-
-  const mobileMenuBlurStyle = {
-    backdropFilter: "blur(5px)",
-    WebkitBackdropFilter: "blur(5px)",
-  };
-
   return (
-    <header className={styles.header} style={headerBlurStyle}>
+    <header className={styles.header}>
       <div className={`container ${styles.content}`}>
         <button
           className={`${styles.burger} ${isMenuOpen ? styles.burgerOpen : ""}`}
@@ -86,7 +71,6 @@ const Header = () => {
         className={`${styles.mobileMenu} ${
           isMenuOpen ? styles.mobileMenuOpen : ""
         }`}
-        style={mobileMenuBlurStyle}
         onClick={closeMenu}
       >
         <div

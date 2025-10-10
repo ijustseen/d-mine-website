@@ -5,7 +5,8 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  /* backdrop-filter будет в inline стилях */
+  backdrop-filter: blur(8px);
+  background: rgba(from var(--background) r g b / 0.6);
 }
 
 .content {
@@ -126,7 +127,7 @@
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  /* backdrop-filter будет в inline стилях */
+  backdrop-filter: blur(8px);
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
