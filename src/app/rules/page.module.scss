@@ -37,16 +37,15 @@
 }
 
 .nav {
-  position: -webkit-sticky; // Для Safari
   position: sticky;
-  top: 120px; // Увеличиваем отступ от header
+  top: 120px;
   background: var(--gray-alpha-100);
   border: 1px solid var(--gray-alpha-200);
   border-radius: 8px;
-  padding: 1.5rem;
-  max-height: calc(100vh - 120px); // Ограничиваем высоту для sticky
-  overflow-y: auto; // Добавляем прокрутку если контент не помещается
-  z-index: 10; // Ниже header (1000), но выше контента
+  padding: 1.5rem 1.5rem 20vh 1.5rem; // Увеличиваем padding снизу для визуального расширения
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  z-index: 10;
 }
 
 .navTitle {

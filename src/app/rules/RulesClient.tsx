@@ -53,6 +53,10 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
 
   useEffect(() => {
     setIsClient(true);
+
+    // Исправляем overflow для работы sticky
+    // document.documentElement.style.overflowX = "visible";
+    // document.body.style.overflowX = "visible";
   }, []);
 
   useEffect(() => {
