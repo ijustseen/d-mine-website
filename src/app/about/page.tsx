@@ -18,17 +18,17 @@ export default function About() {
 
   const teamMembers = [
     {
-      name: "AdminName",
+      name: "Pirozxhok",
       role: "Главный администратор",
       description: "Основатель сервера",
     },
     {
-      name: "ModerName1",
+      name: "gpho_",
       role: "Модератор",
       description: "Следит за порядком",
     },
-    { name: "ModerName2", role: "Модератор", description: "Помощь игрокам" },
-    { name: "BuilderName", role: "Строитель", description: "Создание локаций" },
+    { name: "Kaula", role: "Модератор", description: "Помощь игрокам" },
+    { name: "S0WVA", role: "Строитель", description: "Создание локаций" },
   ];
 
   // Пример изображений - замените на реальные пути к вашим скриншотам

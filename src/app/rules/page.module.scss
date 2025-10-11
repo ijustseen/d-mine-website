@@ -12,36 +12,24 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 280px;
   gap: 2rem;
   padding: 100px 2rem 0; // Увеличиваем боковые отступы по умолчанию
-  min-height: 100vh; // Обеспечиваем минимальную высоту для sticky
-  align-items: flex-start; // Выравниваем элементы по верху
 }
 
 // Main content area (LEFT side)
 .main {
-  flex: 1;
   min-width: 0;
-  max-width: calc(100% - 320px);
-  order: 1;
 
   @media (max-width: 1024px) {
-    max-width: 100%;
+    grid-column: 1 / -1;
   }
 }
 
-// Sidebar navigation on the RIGHT (like PepeLand)
 .sidebar {
-  width: 280px;
-  flex-shrink: 0;
-  position: -webkit-sticky; // Для Safari
-  position: sticky;
-  top: 120px; // Увеличиваем отступ от header
-  height: fit-content;
-  order: 2;
-  align-self: flex-start; // Важно для sticky позиционирования
-  z-index: 10; // Ниже header (1000), но выше контента
+  align-self: start;
+  height: 100%;
 
   @media (max-width: 1024px) {
     display: none;
@@ -49,12 +37,16 @@
 }
 
 .nav {
+  position: -webkit-sticky; // Для Safari
+  position: sticky;
+  top: 120px; // Увеличиваем отступ от header
   background: var(--gray-alpha-100);
   border: 1px solid var(--gray-alpha-200);
   border-radius: 8px;
   padding: 1.5rem;
   max-height: calc(100vh - 120px); // Ограничиваем высоту для sticky
   overflow-y: auto; // Добавляем прокрутку если контент не помещается
+  z-index: 10; // Ниже header (1000), но выше контента
 }
 
 .navTitle {
@@ -380,7 +372,7 @@
 
 // Footer
 .footer {
-  margin-bottom: 3rem;
+  margin-bottom: 1.3rem;
   padding: 2rem;
   background: var(--gray-alpha-100);
   border: 1px solid var(--gray-alpha-200);
@@ -409,7 +401,7 @@
 
 @media (max-width: 1024px) {
   .container {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 1rem;
     padding: 100px 2rem 0; // Увеличиваем отступы для планшетов
   }
