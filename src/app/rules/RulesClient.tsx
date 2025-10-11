@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { IoEye, IoEyeOff } from "react-icons/io5";
+import { IoEye, IoEyeOff, IoMenu, IoClose } from "react-icons/io5";
 import styles from "./page.module.scss";
 
 interface RulesClientProps {
@@ -41,6 +41,7 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
   const [activeSection, setActiveSection] = useState("section-1");
   const [isClient, setIsClient] = useState(false);
   const [visibleLists, setVisibleLists] = useState<Record<string, boolean>>({});
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const sections = parseRulesContent(rulesContent);
 
@@ -49,6 +50,14 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
       ...prev,
       [listId]: !prev[listId],
     }));
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
@@ -87,6 +96,7 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
+      closeMobileMenu(); // Закрываем мобильное меню после перехода
     }
   };
 
@@ -304,6 +314,48 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
     <div className={styles.page}>
       <div className={styles.container}>
         <main className={styles.main}>
+          {/* Мобильная кнопка меню внутри main */}
+          {isClient && sections.length > 0 && (
+            <div
+              className={`${styles.mobileMenuButton} ${
+                isMobileMenuOpen ? styles.expanded : ""
+              }`}
+            >
+              <div
+                className={styles.mobileMenuHeader}
+                onClick={toggleMobileMenu}
+              >
+                {isMobileMenuOpen ? <IoClose /> : <IoMenu />}
+                <span>Меню правил сервера</span>
+              </div>
+
+              {isMobileMenuOpen && (
+                <div className={styles.mobileMenuContent}>
+                  <h3 className={styles.mobileMenuSubtitle}>
+                    На этой странице
+                  </h3>
+                  <ul className={styles.mobileNavList}>
+                    {sections.map((section) => (
+                      <li key={section.id}>
+                        <button
+                          className={`${styles.mobileNavLink} ${
+                            activeSection === section.id ? styles.active : ""
+                          }`}
+                          onClick={() => scrollToSection(section.id)}
+                        >
+                          <span className={styles.mobileNavNumber}>
+                            {section.number}.
+                          </span>
+                          <span>{section.title}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+
           <header className={styles.header}>
             <h1 className={styles.title}>Правила D.mine</h1>
           </header>
@@ -322,28 +374,31 @@ export default function RulesClient({ rulesContent }: RulesClientProps) {
         </main>
 
         {isClient && sections.length > 0 && (
-          <aside className={styles.sidebar}>
-            <nav className={styles.nav}>
-              <h2 className={styles.navTitle}>На этой странице</h2>
-              <ul className={styles.navList}>
-                {sections.map((section) => (
-                  <li key={section.id} className={styles.navItem}>
-                    <button
-                      className={`${styles.navLink} ${
-                        activeSection === section.id ? styles.active : ""
-                      }`}
-                      onClick={() => scrollToSection(section.id)}
-                    >
-                      <span className={styles.navNumber}>
-                        {section.number}.
-                      </span>
-                      <span className={styles.navText}>{section.title}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </aside>
+          <>
+            {/* Десктопная навигация */}
+            <aside className={styles.sidebar}>
+              <nav className={styles.nav}>
+                <h2 className={styles.navTitle}>На этой странице</h2>
+                <ul className={styles.navList}>
+                  {sections.map((section) => (
+                    <li key={section.id} className={styles.navItem}>
+                      <button
+                        className={`${styles.navLink} ${
+                          activeSection === section.id ? styles.active : ""
+                        }`}
+                        onClick={() => scrollToSection(section.id)}
+                      >
+                        <span className={styles.navNumber}>
+                          {section.number}.
+                        </span>
+                        <span className={styles.navText}>{section.title}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </aside>
+          </>
         )}
       </div>
     </div>

@@ -15,7 +15,12 @@
   display: grid;
   grid-template-columns: 1fr 280px;
   gap: 2rem;
-  padding: 100px 2rem 0; // Увеличиваем боковые отступы по умолчанию
+  padding: 200px 2rem 0; // Увеличиваем боковые отступы по умолчанию
+
+  @media (max-width: 1024px) {
+    grid-column: 1 / -1;
+    padding: 100px 2rem 0;
+  }
 }
 
 // Main content area (LEFT side)
@@ -30,6 +35,7 @@
 .sidebar {
   align-self: start;
   height: 100%;
+  padding-bottom: 1.3rem;
 
   @media (max-width: 1024px) {
     display: none;
@@ -391,6 +397,171 @@
   }
 }
 
+// Мобильная кнопка меню (расширяющаяся)
+.mobileMenuButton {
+  display: none;
+  position: sticky;
+  top: 72px; // Отступ от header
+  z-index: 100;
+  width: 100%;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(8px);
+  background: rgba(from var(--background) r g b / 0.3);
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &.expanded {
+    max-height: calc(100vh - 120px);
+  }
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    width: calc(100%);
+  }
+
+  @media (max-width: 480px) {
+    width: calc(100%);
+  }
+}
+
+.mobileMenuHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  color: var(--foreground);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(from var(--background) r g b / 0.1);
+  }
+
+  svg {
+    font-size: 1.3rem;
+    color: var(--primary);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  span {
+    flex: 1;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.75rem 1rem;
+  }
+}
+
+.mobileMenuContent {
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid var(--gray-alpha-200);
+  animation: expandContent 0.3s ease forwards;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 1rem 1rem;
+  }
+}
+
+.mobileMenuSubtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  opacity: 0.9;
+
+  svg {
+    color: var(--primary);
+  }
+}
+
+.mobileNavList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: none;
+  background: none;
+  color: var(--foreground);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+  opacity: 0.8;
+
+  &:hover {
+    background: var(--gray-alpha-200);
+    opacity: 1;
+  }
+
+  &.active {
+    background: var(--primary);
+    color: white;
+    opacity: 1;
+    font-weight: 500;
+  }
+}
+
+.mobileNavNumber {
+  font-weight: 600;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+// Анимации
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes expandContent {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 // Mobile responsiveness
 @media (max-width: 1200px) {
   .container {
@@ -402,7 +573,7 @@
   .container {
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 100px 2rem 0; // Увеличиваем отступы для планшетов
+    padding: 100px 2rem 0; // Возвращаем обычный отступ
   }
 
   .title {
@@ -420,7 +591,7 @@
   }
 
   .container {
-    padding: 80px 1.5rem 0; // Увеличиваем отступы по бокам для мобильных
+    padding: 70px 1.5rem 0; // Увеличиваем отступы по бокам для мобильных
   }
 
   .title {
