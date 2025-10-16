@@ -1,10 +1,9 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.scss";
+import AboutCarousel, { type CarouselImage } from "./AboutCarousel";
+import { getAboutImages } from "./getAboutImages";
 
-export default function About() {
+export default async function About() {
   const serverFeatures = [
     "Уникальная система выживания на острове",
     "Кастомные рецепты крафта",
@@ -16,70 +15,7 @@ export default function About() {
     "Защита от гриферов",
   ];
 
-  const teamMembers = [
-    {
-      name: "Pirozxhok",
-      role: "Главный администратор",
-      description: "Основатель сервера",
-    },
-    {
-      name: "gpho_",
-      role: "Модератор",
-      description: "Следит за порядком",
-    },
-    { name: "Kaula", role: "Модератор", description: "Помощь игрокам" },
-    { name: "S0WVA", role: "Строитель", description: "Создание локаций" },
-  ];
-
-  // Пример изображений - замените на реальные пути к вашим скриншотам
-  const serverImages = [
-    {
-      src: "/about-images/about.png",
-      title: "Спавн сервера",
-      description: "Место появления новых игроков",
-    },
-    {
-      src: "/about-images/about.png",
-      title: "Вид на остров",
-      description: "Панорама главного острова",
-    },
-    {
-      src: "/about-images/about.png",
-      title: "База игрока",
-      description: "Пример постройки игрока",
-    },
-    {
-      src: "/about-images/about.png",
-      title: "Зона ивентов",
-      description: "Место проведения мероприятий",
-    },
-    {
-      src: "/about-images/about.png",
-      title: "Торговая площадь",
-      description: "Центр экономики сервера",
-    },
-    {
-      src: "/about-images/about.png",
-      title: "PvP арена",
-      description: "Место для сражений",
-    },
-  ];
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % serverImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex(
-      (prev) => (prev - 1 + serverImages.length) % serverImages.length
-    );
-  };
-
-  const goToImage = (index: number) => {
-    setCurrentImageIndex(index);
-  };
+  const serverImages: CarouselImage[] = await getAboutImages();
 
   return (
     <div className={styles.page}>
@@ -127,99 +63,7 @@ export default function About() {
         {/* Карусель скриншотов */}
         <section className={styles.gallery}>
           <h2 className={styles.sectionTitle}>Скриншоты сервера</h2>
-
-          <div className={styles.carousel}>
-            <div className={styles.carouselContainer}>
-              <button
-                className={`${styles.carouselButton} ${styles.carouselButtonPrev}`}
-                onClick={prevImage}
-                aria-label="Предыдущий скриншот"
-              >
-                ‹
-              </button>
-
-              <div className={styles.carouselSlide}>
-                <Image
-                  src={serverImages[currentImageIndex].src}
-                  alt={serverImages[currentImageIndex].title}
-                  className={styles.carouselImage}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
-                  placeholder="blur"
-                  blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-size='24'%3EЗагрузка...%3C/text%3E%3C/svg%3E"
-                  onError={() => {
-                    console.log(
-                      `Не удалось загрузить изображение: ${serverImages[currentImageIndex].src}`
-                    );
-                  }}
-                />
-                <div className={styles.carouselCaption}>
-                  <h3>{serverImages[currentImageIndex].title}</h3>
-                  <p>{serverImages[currentImageIndex].description}</p>
-                </div>
-              </div>
-
-              <button
-                className={`${styles.carouselButton} ${styles.carouselButtonNext}`}
-                onClick={nextImage}
-                aria-label="Следующий скриншот"
-              >
-                ›
-              </button>
-            </div>
-
-            {/* Индикаторы */}
-            <div className={styles.carouselIndicators}>
-              {serverImages.map((_, index) => (
-                <button
-                  key={index}
-                  className={`${styles.carouselIndicator} ${
-                    index === currentImageIndex
-                      ? styles.carouselIndicatorActive
-                      : ""
-                  }`}
-                  onClick={() => goToImage(index)}
-                  aria-label={`Перейти к скриншоту ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            {/* Счетчик */}
-            <div className={styles.carouselCounter}>
-              {currentImageIndex + 1} / {serverImages.length}
-            </div>
-          </div>
-        </section>
-
-        {/* Команда сервера */}
-        <section className={styles.team}>
-          <h2 className={styles.sectionTitle}>Команда сервера</h2>
-          <div className={styles.teamGrid}>
-            {teamMembers.map((member, index) => (
-              <div key={index} className={styles.teamMember}>
-                <div className={styles.memberAvatar}>
-                  <Image
-                    src={`https://mc-heads.net/avatar/${member.name}/64`}
-                    alt={`Аватар ${member.name}`}
-                    width={64}
-                    height={64}
-                    className={styles.memberAvatarImage}
-                    placeholder="blur"
-                    blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%234a90e2'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24'%3E?%3C/text%3E%3C/svg%3E"
-                    onError={() => {
-                      console.log(
-                        `Не удалось загрузить аватар: ${member.name}`
-                      );
-                    }}
-                  />
-                </div>
-                <h3>{member.name}</h3>
-                <p className={styles.memberRole}>{member.role}</p>
-                <p className={styles.memberDescription}>{member.description}</p>
-              </div>
-            ))}
-          </div>
+          <AboutCarousel images={serverImages} />
         </section>
 
         {/* Информация о сервере */}

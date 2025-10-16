@@ -16,7 +16,6 @@
 // Hero секция
 .hero {
   text-align: center;
-  margin-bottom: 2rem;
 }
 
 .title {
@@ -79,7 +78,7 @@
 
   .sectionTitle {
     text-align: left;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; // выравниваем отступ под заголовком секции
   }
 }
 
@@ -91,7 +90,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
-  margin-top: 2rem;
 }
 
 .featureItem {
@@ -120,7 +118,6 @@
 }
 
 .carousel {
-  margin-top: 2rem;
   position: relative;
 }
 
@@ -208,7 +205,7 @@
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 1rem; // оставляем небольшой отступ внутри галереи
 }
 
 .carouselIndicator {
