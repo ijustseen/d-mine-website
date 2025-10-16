@@ -5,6 +5,18 @@
   min-height: 100vh;
   padding-top: 0; // Убираем отступ, чтобы контент мог проходить под header
   font-family: var(--font-geist-sans);
+  position: relative;
+}
+
+.backgroundVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.15; // Очень прозрачное видео для максимальной читаемости
 }
 
 .main {
@@ -15,6 +27,8 @@
   align-items: center;
   gap: 1.5rem;
   margin-top: 100px; // Добавляем отступ только к main контенту
+  position: relative;
+  z-index: 1;
 }
 
 .title {
@@ -36,13 +50,14 @@
 }
 
 .version {
-  background: var(--gray-alpha-100);
+  background: var(--plaque-bg);
   color: var(--foreground);
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   font-size: 0.9rem;
   font-weight: 500;
   border: 1px solid var(--gray-alpha-200);
+  backdrop-filter: blur(8px);
 }
 
 .actions {

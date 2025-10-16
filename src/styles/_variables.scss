@@ -7,6 +7,8 @@
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
   --gray-alpha-150: rgba(var(--gray-rgb), 0.05);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.03);
+  --gray-alpha-50: rgba(var(--gray-rgb), 0.015);
+  --plaque-bg: #fafafa;
   --primary: #4a90e2;
   --link-color: var(--primary);
   --button-primary-hover: #357abd;
@@ -28,6 +30,8 @@
     --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
     --gray-alpha-150: rgba(var(--gray-rgb), 0.1);
     --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+    --gray-alpha-50: rgba(var(--gray-rgb), 0.06);
+    --plaque-bg: rgba(var(--gray-rgb), 0.08);
     --primary: #5ba3f5;
     --button-primary-hover: #7bb8f7;
     --button-secondary-hover: #1a1a1a;
@@ -41,6 +45,8 @@
   --gray-rgb: 255, 255, 255;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-50: rgba(var(--gray-rgb), 0.08);
+  --plaque-bg: rgba(var(--gray-rgb), 0.08);
   --primary: #5ba3f5;
   --link-color: var(--primary);
   --button-primary-hover: #7bb8f7;

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./page.module.scss";
 import AboutCarousel, { type CarouselImage } from "./AboutCarousel";
 import { getAboutImages } from "./getAboutImages";
@@ -8,11 +7,8 @@ export default async function About() {
     "Уникальная система выживания на острове",
     "Кастомные рецепты крафта",
     "Система экономики и торговли",
-    "Приватные территории игроков",
-    "Еженедельные ивенты и конкурсы",
     "Дружелюбное сообщество",
-    "Активная администрация 24/7",
-    "Защита от гриферов",
+    "Разделенные миры выживания и ферм",
   ];
 
   const serverImages: CarouselImage[] = await getAboutImages();
@@ -34,16 +30,16 @@ export default async function About() {
             Добро пожаловать на остров выживания!
           </h2>
           <p>
-            D.Mine — это уникальный приватный сервер Minecraft, где вас ждет
-            незабываемое приключение на таинственном острове. Здесь каждый игрок
-            начинает свой путь с нуля, исследуя неизведанные территории, добывая
-            ресурсы и строя свой дом в суровых условиях островной жизни.
+            D.Mine — это приватный сервер Minecraft, где вас ждет увлекательное
+            приключение на загадочном острове. Каждый игрок начинает с чистого
+            листа, открывая неизведанные земли, собирая ресурсы и создавая
+            огромные проекты вместе.
           </p>
           <p>
-            Наш сервер предлагает сбалансированный геймплей с элементами
-            выживания, где важны как индивидуальные навыки, так и командная
-            работа. Присоединяйтесь к нашему дружному сообществу и создавайте
-            свою историю на острове!
+            Наш сервер предлагает сбалансированный геймплей, где важны как
+            личные навыки, так и взаимодействие с другими игроками.
+            Присоединяйтесь к нашему дружному сообществу и создайте свою историю
+            на острове!
           </p>
         </section>
 
@@ -76,7 +72,7 @@ export default async function About() {
             </div>
             <div className={styles.infoItem}>
               <strong>IP адрес:</strong>
-              <code>play.d-mine.ru</code>
+              <code>play.d-mine.net</code>
             </div>
             <div className={styles.infoItem}>
               <strong>Режим игры:</strong>
@@ -84,7 +80,7 @@ export default async function About() {
             </div>
             <div className={styles.infoItem}>
               <strong>Максимум игроков:</strong>
-              <span>50 человек</span>
+              <span>500 человек</span>
             </div>
             <div className={styles.infoItem}>
               <strong>Время работы:</strong>

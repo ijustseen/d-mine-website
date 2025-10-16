@@ -10,12 +10,15 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
+      <video className={styles.backgroundVideo} autoPlay muted loop playsInline>
+        <source src="/videos/vid1.mp4" type="video/mp4" />
+      </video>
       <main className={`${styles.main} container`}>
         <h1 className={styles.title}>D.Mine</h1>
         <p className={styles.subtitle}>
           Приватный сервер с уникальными элементами выживания
         </p>
-        <div className={styles.version}>Версия 1.21.9</div>
+        <div className={styles.version}>Версия 1.21.10</div>
 
         <div className={styles.actions}>
           <Link href="/pass">
