@@ -1,0 +1,34 @@
+.navigation {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: var(--foreground);
+    opacity: 0.8;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--gray-alpha-100);
+      opacity: 1;
+    }
+
+    &.active {
+      background: var(--gray-alpha-200);
+      color: var(--primary);
+      opacity: 1;
+    }
+  }
+}

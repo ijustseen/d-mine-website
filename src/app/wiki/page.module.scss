@@ -38,9 +38,6 @@
 
 .sidebar {
   grid-area: sidebar;
-  background: var(--plaque-bg);
-  border: 1px solid var(--gray-alpha-200);
-  border-radius: 8px;
 
   // Sticky только на больших экранах
   @media (min-width: 1024px) {
@@ -55,7 +52,7 @@
     color: var(--foreground);
     font-size: 1.2rem;
     margin-bottom: 1rem;
-    padding: 1.5rem 1.5rem 0;
+    padding: 1.5rem 0 0;
   }
 }
 
@@ -105,9 +102,6 @@
 
 .rightSidebar {
   grid-area: rightSidebar;
-  background: var(--plaque-bg);
-  border: 1px solid var(--gray-alpha-200);
-  border-radius: 8px;
 
   // Sticky только на больших экранах
   @media (min-width: 1024px) {
@@ -122,44 +116,13 @@
     color: var(--foreground);
     font-size: 1.2rem;
     margin-bottom: 1rem;
-    padding: 1.5rem 1.5rem 0;
+    padding: 1.5rem 0 0;
   }
 }
 
-// Стили для навигации в боковых панелях
+// Стили для контента боковых панелей
 .sidebarContent {
-  padding: 0 1.5rem 1.5rem;
-}
-
-.navList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  li {
-    margin-bottom: 0.5rem;
-  }
-
-  a {
-    color: var(--foreground);
-    opacity: 0.8;
-    text-decoration: none;
-    display: block;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: var(--gray-alpha-100);
-      opacity: 1;
-    }
-
-    &.active {
-      background: var(--gray-alpha-200);
-      color: var(--primary);
-      opacity: 1;
-    }
-  }
+  padding: 0 0 1.5rem;
 }
 
 .tocList {
