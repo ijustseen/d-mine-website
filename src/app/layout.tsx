@@ -4,6 +4,7 @@ import "./globals.scss";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import BackgroundVideo from "@/components/BackgroundVideo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +59,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <BackgroundVideo />
         <ThemeProvider>
           <Header />
           {children}
