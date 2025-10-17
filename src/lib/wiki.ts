@@ -14,7 +14,7 @@ export function getWikiPages(): WikiPage[] {
     const files = fs.readdirSync(wikiDir);
     const mdFiles = files.filter((file) => file.endsWith(".md"));
 
-    return mdFiles.map((file) => {
+    const pages = mdFiles.map((file) => {
       const slug = file.replace(".md", "");
       const filePath = path.join(wikiDir, file);
       const content = fs.readFileSync(filePath, "utf8");
@@ -28,6 +28,13 @@ export function getWikiPages(): WikiPage[] {
         title,
         content,
       };
+    });
+
+    // Сортируем так, чтобы index был первым, остальные по алфавиту
+    return pages.sort((a, b) => {
+      if (a.slug === "index") return -1;
+      if (b.slug === "index") return 1;
+      return a.title.localeCompare(b.title);
     });
   } catch (error) {
     console.error("Error reading wiki files:", error);
@@ -49,7 +56,7 @@ export function getWikiPage(slug: string): WikiPage | null {
       title,
       content,
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }

@@ -52,7 +52,10 @@ const Header = () => {
               <Link href={item.path} key={item.path}>
                 <li
                   className={`${styles.navElement} ${
-                    pathname === item.path ? styles.active : ""
+                    pathname === item.path ||
+                    (item.path === "/wiki" && pathname.startsWith("/wiki"))
+                      ? styles.active
+                      : ""
                   }`}
                 >
                   {item.label}
@@ -87,7 +90,10 @@ const Header = () => {
               <Link href={item.path} key={item.path} onClick={closeMenu}>
                 <li
                   className={`${styles.mobileNavElement} ${
-                    pathname === item.path ? styles.active : ""
+                    pathname === item.path ||
+                    (item.path === "/wiki" && pathname.startsWith("/wiki"))
+                      ? styles.active
+                      : ""
                   }`}
                 >
                   {item.label}
