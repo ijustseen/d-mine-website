@@ -13,21 +13,9 @@
   margin: 0 auto;
   align-items: start;
 
-  // Мобильные устройства - все колонки друг за другом
+  // Мобильные устройства и планшеты - только контент
   grid-template-columns: 1fr;
-  grid-template-areas:
-    "sidebar"
-    "content"
-    "rightSidebar";
-
-  // Планшеты - все колонки друг за другом
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "sidebar"
-      "content"
-      "rightSidebar";
-  }
+  grid-template-areas: "content";
 
   // Большие экраны - грид 1:2:1
   @media (min-width: 1024px) {
@@ -38,6 +26,11 @@
 
 .sidebar {
   grid-area: sidebar;
+
+  // Скрываем на мобильных и планшетах
+  @media (max-width: 1023px) {
+    display: none;
+  }
 
   // Sticky только на больших экранах
   @media (min-width: 1024px) {
@@ -57,10 +50,12 @@
 
 .content {
   grid-area: content;
-  background: var(--plaque-bg);
-  border: 1px solid var(--gray-alpha-200);
-  border-radius: 8px;
   padding: 2rem;
+
+  // На мобильных устройствах убираем верхний padding, так как мобильное меню добавляет отступ
+  @media (max-width: 1023px) {
+    padding-top: 0;
+  }
 
   h1 {
     margin-top: 0;
@@ -109,6 +104,11 @@
 
 .rightSidebar {
   grid-area: rightSidebar;
+
+  // Скрываем на мобильных и планшетах
+  @media (max-width: 1023px) {
+    display: none;
+  }
 
   // Sticky только на больших экранах
   @media (min-width: 1024px) {

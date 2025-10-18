@@ -1,6 +1,7 @@
 import { getWikiPages, getWikiPage } from "@/lib/wiki";
 import { extractHeadings } from "@/lib/markdown";
 import WikiNavigation from "@/components/WikiNavigation/WikiNavigation";
+import WikiMobileMenu from "@/components/WikiMobileMenu/WikiMobileMenu";
 import MarkdownRenderer from "@/components/MarkdownRenderer/MarkdownRenderer";
 import styles from "../page.module.scss";
 
@@ -39,6 +40,13 @@ export default async function WikiPage({ params }: WikiPageProps) {
         </aside>
 
         <section className={styles.content}>
+          {/* Мобильное меню */}
+          <WikiMobileMenu
+            pages={pages}
+            currentSlug={slug}
+            headings={headings}
+          />
+
           <MarkdownRenderer content={currentPage.content} />
         </section>
 
