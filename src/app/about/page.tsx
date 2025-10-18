@@ -16,8 +16,8 @@ export default async function About() {
 
   return (
     <div className={styles.page}>
-      {/* Preload изображений карусели */}
-      {serverImages.slice(0, 3).map((image, index) => (
+      {/* Preload всех изображений карусели */}
+      {serverImages.map((image, index) => (
         <link key={index} rel="preload" as="image" href={image.src} />
       ))}
 
@@ -74,7 +74,7 @@ export default async function About() {
           <div className={styles.infoGrid}>
             <div className={styles.infoItem}>
               <strong>Версия Minecraft:</strong>
-              <span>1.21.9</span>
+              <span>1.21.10</span>
             </div>
             <div className={styles.infoItem}>
               <strong>IP адрес:</strong>
