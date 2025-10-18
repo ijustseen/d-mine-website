@@ -6,7 +6,7 @@ import { CopyIPButton } from "../components/CopyIPButton/CopyIPButton";
 import styles from "./page.module.scss";
 
 export default function Home() {
-  const serverIP = "play.d-mine.ru";
+  const serverIP = "play.d-mine.net";
 
   return (
     <div className={styles.page}>

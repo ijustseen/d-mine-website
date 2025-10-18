@@ -9,12 +9,18 @@ export default async function About() {
     "Система экономики и торговли",
     "Дружелюбное сообщество",
     "Разделенные миры выживания и ферм",
+    "Удобное лобби для перехода между мирами",
   ];
 
   const serverImages: CarouselImage[] = await getAboutImages();
 
   return (
     <div className={styles.page}>
+      {/* Preload изображений карусели */}
+      {serverImages.slice(0, 3).map((image, index) => (
+        <link key={index} rel="preload" as="image" href={image.src} />
+      ))}
+
       <main className={`${styles.main} container`}>
         {/* Заголовок */}
         <section className={styles.hero}>

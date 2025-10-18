@@ -44,13 +44,13 @@
 .nav {
   position: sticky;
   top: 120px;
-  background: var(--gray-alpha-100);
-  border: 1px solid var(--gray-alpha-200);
-  border-radius: 8px;
-  padding: 1.5rem 1.5rem 20vh 1.5rem; // Увеличиваем padding снизу для визуального расширения
+  padding: 1.5rem; // Убираем лишний padding снизу
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   z-index: 10;
+
+  // Делаем высоту по содержимому
+  height: fit-content;
 }
 
 .navTitle {
@@ -572,7 +572,7 @@
   .container {
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 100px 2rem 0; // Возвращаем обычный отступ
+    padding: 100px 3rem 0; // Увеличиваем отступы для планшетов
   }
 
   .title {
@@ -590,7 +590,7 @@
   }
 
   .container {
-    padding: 70px 1.5rem 0; // Увеличиваем отступы по бокам для мобильных
+    padding: 70px 2.5rem 0; // Увеличиваем отступы по бокам для мобильных
   }
 
   .title {
@@ -617,7 +617,7 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 80px 1.25rem 0; // Еще больше отступы для очень маленьких экранов
+    padding: 80px 2rem 0; // Увеличиваем отступы для очень маленьких экранов
   }
 
   .rulesList {

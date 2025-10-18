@@ -36,6 +36,9 @@ export default function MarkdownRenderer({
                 height={400}
                 className={styles.image}
                 style={{ width: "auto", height: "auto" }}
+                priority={true} // Приоритетная загрузка для изображений в wiki
+                placeholder="blur"
+                blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23f5f5f5'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-size='18'%3EЗагрузка изображения...%3C/text%3E%3C/svg%3E"
               />
             </div>
           ),

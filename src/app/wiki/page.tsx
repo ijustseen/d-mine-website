@@ -1,5 +1,6 @@
 import { getWikiPages, getWikiPage } from "@/lib/wiki";
 import { extractHeadings } from "@/lib/markdown";
+import { extractImageUrls } from "@/lib/extractImages";
 import WikiNavigation from "@/components/WikiNavigation/WikiNavigation";
 import WikiMobileMenu from "@/components/WikiMobileMenu/WikiMobileMenu";
 import MarkdownRenderer from "@/components/MarkdownRenderer/MarkdownRenderer";
@@ -16,8 +17,16 @@ export default function Wiki() {
   // Извлекаем заголовки из контента для правой панели
   const headings = extractHeadings(currentPage.content);
 
+  // Извлекаем изображения для preloading
+  const imageUrls = extractImageUrls(currentPage.content);
+
   return (
     <main className={styles.main}>
+      {/* Preload изображений wiki */}
+      {imageUrls.slice(0, 3).map((imageUrl, index) => (
+        <link key={index} rel="preload" as="image" href={imageUrl} />
+      ))}
+
       <div className={styles.grid}>
         <aside className={styles.sidebar}>
           <WikiNavigation pages={pages} currentSlug="index" />
