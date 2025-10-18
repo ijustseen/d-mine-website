@@ -1,6 +1,7 @@
 import { getWikiPages, getWikiPage } from "@/lib/wiki";
-import { extractHeadings, parseMarkdownWithHeadings } from "@/lib/markdown";
+import { extractHeadings } from "@/lib/markdown";
 import WikiNavigation from "@/components/WikiNavigation/WikiNavigation";
+import MarkdownRenderer from "@/components/MarkdownRenderer/MarkdownRenderer";
 import styles from "../page.module.scss";
 
 interface WikiPageProps {
@@ -38,11 +39,7 @@ export default async function WikiPage({ params }: WikiPageProps) {
         </aside>
 
         <section className={styles.content}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: parseMarkdownWithHeadings(currentPage.content),
-            }}
-          />
+          <MarkdownRenderer content={currentPage.content} />
         </section>
 
         <aside className={styles.rightSidebar}>
