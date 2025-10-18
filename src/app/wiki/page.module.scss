@@ -42,9 +42,8 @@
   // Sticky только на больших экранах
   @media (min-width: 1024px) {
     position: sticky;
-    top: calc(80px); // Учитываем высоту шапки
-    height: calc(100vh - 80px - 4rem);
-    overflow-y: auto;
+    top: calc(80px + 2rem); // Учитываем высоту шапки + отступ
+    align-self: start;
   }
 
   h3 {
@@ -114,9 +113,8 @@
   // Sticky только на больших экранах
   @media (min-width: 1024px) {
     position: sticky;
-    top: calc(80px); // Учитываем высоту шапки
-    height: calc(100vh - 80px - 4rem);
-    overflow-y: auto;
+    top: calc(80px + 2rem); // Учитываем высоту шапки + отступ
+    align-self: start;
   }
 
   h3 {
@@ -155,28 +153,6 @@
     &:hover {
       background: var(--gray-alpha-50);
       opacity: 0.9;
-    }
-  }
-}
-
-// Кастомный скроллбар для боковых панелей
-.sidebar,
-.rightSidebar {
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: var(--gray-alpha-50);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--gray-alpha-200);
-    border-radius: 3px;
-
-    &:hover {
-      background: var(--gray-alpha-300);
     }
   }
 }

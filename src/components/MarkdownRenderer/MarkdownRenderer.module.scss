@@ -99,7 +99,21 @@
 
 .image {
   max-width: 100%;
+  min-width: 150px; // Минимальная ширина для мобильных
+  min-height: 120px; // Минимальная высота для мобильных
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  object-fit: contain; // Сохраняет пропорции изображения
+
+  // Увеличиваем минимальный размер на больших экранах
+  @media (min-width: 768px) {
+    min-width: 200px;
+    min-height: 150px;
+  }
+
+  @media (min-width: 1024px) {
+    min-width: 250px;
+    min-height: 180px;
+  }
 }
